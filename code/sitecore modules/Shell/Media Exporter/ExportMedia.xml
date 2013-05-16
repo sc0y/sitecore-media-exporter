@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<control xmlns:asp="http://www.sitecore.net/microsoft/webcontrols">
+  <ExportMedia>
+    <FormPage>
+		<CodeBeside Type="SharedSource.MediaExporterModule.MediaExportForm,SharedSource.MediaExporterModule" />
+		<GridPanel class="scBackground" vAlign="top" Height="100%" Width="100%" Cellpadding="5">
+			<Border align="center" Width="100%">
+				<Border align="left" Width="200">
+					<h5>Export Media Items</h5>
+					<strong>Zip filename</strong><br />
+					<Edit ID="Filename" Width="200" /><br />
+					<Space Height="10" Width="1" /><br />
+					<Checkbox Header="Include sub folders" ID="Recursive" Checked="true" /><br />
+					<Space Height="10" width="1" /><br />
+					<Button Header="Export" Click="OnSubmitButton" />
+				</Border>
+			</Border>
+		</GridPanel>
+    </FormPage>
+  </ExportMedia>
+</control>
