@@ -53,7 +53,7 @@ namespace SharedSource.MediaExporterModule
             bool recursive = extractRecursiveParam(paramsArray);
 
             string exportfolderName = Settings.DataFolder + "/" +
-                                      Settings.GetSetting("SharedSource.MediaExporterModule.ExportFolderName");
+                                      Settings.GetSetting("SharedSource.MediaExporterModule.ExportFolderName", "MediaExports");
 
             string exportFileNameWithExtension = exportFileName.EndsWith(".zip") ? exportFileName : exportFileName + ".zip";
 
@@ -63,6 +63,7 @@ namespace SharedSource.MediaExporterModule
                                               exportFileNameWithExtension,
                                               '/'));
 
+            Log.Info("Starting export of media items to: " + zipPath, this);
             Sitecore.Shell.Applications.Dialogs.ProgressBoxes.ProgressBox.Execute(
                 "Export Media Items...",
                 "Export Media Items",
