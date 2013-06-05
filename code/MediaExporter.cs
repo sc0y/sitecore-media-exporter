@@ -31,12 +31,12 @@ namespace SharedSource.MediaExporterModule
             if (rootMediaItem.TemplateID != TemplateIDs.MediaFolder 
                 && rootMediaItem.TemplateID != TemplateIDs.MainSection)
             {
+                string statusMessage = "Processed " + Context.Job.Status.Processed + " items";
+                Log.Info(statusMessage, this);
+
                 // Update the job status
                 Context.Job.Status.Processed++;
-                Context.Job.Status.Messages.Add(
-                    "Processed " + 
-                    Context.Job.Status.Processed +
-                    " items");
+                Context.Job.Status.Messages.Add(statusMessage);
 
                 var mediaItem = new MediaItem(rootMediaItem);
                 AddMediaItemToZip(mediaItem);
@@ -54,23 +54,25 @@ namespace SharedSource.MediaExporterModule
         {
             Assert.ArgumentNotNull(mediaItem, "mediaItem");
 
-            Stream stream = mediaItem.GetMediaStream();
-            if (stream == null)
+            using (Stream stream = mediaItem.GetMediaStream())
             {
-                Log.Warn(string.Format("Cannot find media data for item '{0}'", 
-                    mediaItem.MediaPath), 
-                    typeof(object));
-                return;
+                if (stream == null)
+                {
+                    Log.Warn(string.Format("Cannot find media data for item '{0}'",
+                        mediaItem.MediaPath),
+                        typeof(object));
+                    return;
+                }
+
+                string mediaExtension = string.IsNullOrEmpty(mediaItem.Extension)
+                    ? ""
+                    : "." + mediaItem.Extension;
+
+                ZipWriter.AddEntry(
+                    mediaItem.MediaPath.Substring(1) +
+                    mediaItem.Name +
+                    mediaExtension, stream);
             }
-
-            string mediaExtension = string.IsNullOrEmpty(mediaItem.Extension) 
-                ? "" 
-                : "." + mediaItem.Extension;
-
-            ZipWriter.AddEntry(
-                mediaItem.MediaPath.Substring(1) + 
-                mediaItem.Name + 
-                mediaExtension, stream);
         }
     }
 }
