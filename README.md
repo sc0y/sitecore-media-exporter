@@ -15,3 +15,5 @@ media items in that folder.
 ** Note the current version of this module only supports Sitecore installations running on the .NET 4.0 framework. 
 This module does not currently support exporting a specific language version of a media item.  Only the current 
 version of the default language will be exported.
+
+This module assumes items are stored in the database vs the file system.
