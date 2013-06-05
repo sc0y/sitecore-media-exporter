@@ -60,7 +60,7 @@ namespace SharedSource.MediaExporterModule
                 {
                     Log.Warn(string.Format("Cannot find media data for item '{0}'",
                         mediaItem.MediaPath),
-                        typeof(object));
+                        this);
                     return;
                 }
 
