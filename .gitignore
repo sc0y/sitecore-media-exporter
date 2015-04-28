@@ -1,3 +1,4 @@
 /code/obj
 /code/bin
 /code/SharedSource.MediaExporterModule.suo
+*.suo
