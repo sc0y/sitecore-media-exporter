@@ -70,7 +70,6 @@ namespace SharedSource.MediaExporterModule
 
                 ZipWriter.AddEntry(
                     mediaItem.MediaPath.Substring(1) +
-                    mediaItem.Name +
                     mediaExtension, stream);
             }
         }
