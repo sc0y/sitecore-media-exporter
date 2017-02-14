@@ -12,8 +12,8 @@ zip files will be stored on the file system relative to the Data folder.
 3. There will now be an additional button when viewing the contents of a folder in the Media Library to export all 
 media items in that folder.
 
-** Note the current version of this module only supports Sitecore installations running on the .NET 4.0 framework. 
-This module does not currently support exporting a specific language version of a media item.  Only the current 
-version of the default language will be exported.
+4. Change the .NET version to 4.5
+
+5. Ensure you are using Sitecore V7 and above
 
 This module assumes items are stored in the database vs the file system.
