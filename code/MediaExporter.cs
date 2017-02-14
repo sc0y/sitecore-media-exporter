@@ -43,6 +43,8 @@ namespace SharedSource.MediaExporterModule
             }
             else if (recursive)
             {
+                Context.Job.Status.Messages.Add("Processing: " + rootMediaItem.Paths.ContentPath);
+
                 foreach (Item item in rootMediaItem.GetChildren())
                 {
                     ProcessMediaItems(item, true);
